@@ -43,6 +43,8 @@ git clone --branch <BRANCH_NAME> https://github.com/estebangarviso/WebDevFinalPr
 ### Librerias/Libraries
 ![FontAwesome](https://img.shields.io/badge/FontAwesome-v5.15-339AF0?style=solid&logoColor=339AF0&labelColor=ffffff&logo=fontawesome)
 ### Features
+  - Vanilla javascript emulating some jquery simple codes
+  - Full responsive and fancy animation
   - SVG Logo Design
   - Back to top
   - Contact form with Google Maps API and Waze Travel
