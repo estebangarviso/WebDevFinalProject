@@ -34,12 +34,14 @@ git clone --branch <BRANCH_NAME> https://github.com/estebangarviso/WebDevFinalPr
   - Go to the cloned folder and open index.html in your browser.
 ### Status 📖
 ![GitHub branch checks state](https://img.shields.io/github/checks-status/estebangarviso/WebDevFinalProject/main?style=solid)
-### Building 🛠️
+### Lenguagues utilizados/Languages Used 🛠️
 ![HTML5](https://img.shields.io/badge/HTML-v5.0.0-E34F26?style=solid&logoColor=ffffff&labelColor=E34F26&logo=html5)
 ![CSS3](https://img.shields.io/badge/CSS-v3.0.0-1572B6?style=solid&labelColor=1572B6&logo=css3)
 ![Javascript](https://img.shields.io/badge/Javascript-ES9-F7DF1E?style=solid&labelColor=F7DF1E&logoColor=000000&logo=JavaScript)
 ![Git](https://img.shields.io/badge/Git-2.31.0-F05032?style=solid&labelColor=F05032&logoColor=ffffff&logo=Git)
 ![Github](https://img.shields.io/badge/Github--181717?style=solid&labelColor=181717&logoColor=ffffff&logo=GitHub)
+### Librerias/Libraries
+![FontAwesome](https://img.shields.io/badge/Font-Awesome-v5.15.1-E34F26?style=solid&logoColor=ffffff&labelColor=339AF0&logo=fontawesome)
 ### Features
   - SVG Logo Design
   - Back to top
