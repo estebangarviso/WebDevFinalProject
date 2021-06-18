@@ -1,5 +1,5 @@
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/estebangarviso/WebDeveloperProject)
-![Lines of code](https://img.shields.io/tokei/lines/github/estebangarviso/WebDeveloperProject)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/estebangarviso/WebDevFinalProject)
+![Lines of code](https://img.shields.io/tokei/lines/github/estebangarviso/WebDevFinalProject)
 # Desarrollo Web desde cero HTML5, CSS, Javascript & GIT/Github 🚀 [FINAL PROJECT]
 Este es el proyecto final del curso de Desarrollo Web para la Certificación de Desarrollador Web de Escalab Academy LATAM.
 
@@ -13,7 +13,7 @@ Este es el proyecto final del curso de Desarrollo Web para la Certificación de 
    - Abra el terminal CMD o BASH y escriba.
 ```
 cd <TU_DIRECTORIO>
-git clone --branch <NOMBRE_DE_RAMA> https://github.com/estebangarviso/WebDeveloperProject
+git clone --branch <NOMBRE_DE_RAMA> https://github.com/estebangarviso/WebDevFinalProject
 ```
 # Web Development from zero HTML5, CSS, Javascript & GIT/Github 🚀 [FINAL PROJECT]
 This is the final proyect of Web Development course in order to Web Developer Certification from Escalab Academy LATAM.
@@ -29,11 +29,11 @@ This is the final proyect of Web Development course in order to Web Developer Ce
 
 ```
 cd <YOUR_PATH>
-git clone --branch <BRANCH_NAME> https://github.com/estebangarviso/WebDeveloperProject
+git clone --branch <BRANCH_NAME> https://github.com/estebangarviso/WebDevFinalProject
 ```
   - Go to the cloned folder and open index.html in your browser.
 ### Status 📖
-![GitHub branch checks state](https://img.shields.io/github/checks-status/estebangarviso/WebDeveloperProject/main?style=solid)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/estebangarviso/WebDevFinalProject/main?style=solid)
 ### Building 🛠️
 ![HTML5](https://img.shields.io/badge/HTML-v5.0.0-E34F26?style=solid&logoColor=ffffff&labelColor=E34F26&logo=html5)
 ![CSS3](https://img.shields.io/badge/CSS-v3.0.0-1572B6?style=solid&labelColor=1572B6&logo=css3)
