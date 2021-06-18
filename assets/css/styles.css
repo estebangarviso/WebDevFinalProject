@@ -2570,6 +2570,230 @@ pre code {
     align-self: stretch !important;
   }
 }
+/** 
+* Flotar contenido a la izquierda, derecha o anular (float), responsivo
+*/
+.float-left,
+.float-xs-left {
+    float: left !important
+}
+
+.float-right,
+.float-xs-right {
+    float: right !important
+}
+
+.float-none,
+.float-xs-none {
+    float: none !important
+}
+
+@media (min-width:576px) {
+    .float-sm-left {
+        float: left !important
+    }
+    .float-sm-right {
+        float: right !important
+    }
+    .float-sm-none {
+        float: none !important
+    }
+}
+
+@media (min-width:768px) {
+    .float-md-left {
+        float: left !important
+    }
+    .float-md-right {
+        float: right !important
+    }
+    .float-md-none {
+        float: none !important
+    }
+}
+
+@media (min-width:992px) {
+    .float-lg-left {
+        float: left !important
+    }
+    .float-lg-right {
+        float: right !important
+    }
+    .float-lg-none {
+        float: none !important
+    }
+}
+
+@media (min-width:1200px) {
+    .float-xl-left {
+        float: left !important
+    }
+    .float-xl-right {
+        float: right !important
+    }
+    .float-xl-none {
+        float: none !important
+    }
+}
+/*
+* Desbordamiento automático y ocultar (overflow)
+*/
+.overflow-auto {
+    overflow: auto !important
+}
+
+.overflow-hidden {
+    overflow: hidden !important
+}
+/*
+* Posición estática, relativa, absoluta, fijada, pegajosa (position)
+*/
+.position-static {
+    position: static !important
+}
+
+.position-relative {
+    position: relative !important
+}
+
+.position-absolute {
+    position: absolute !important
+}
+
+.position-fixed {
+    position: fixed !important
+}
+
+.position-sticky {
+    position: -webkit-sticky !important;
+    position: sticky !important
+}
+/* Fijar arriba, util para posición absoluta */
+.fixed-top {
+    top: 0
+}
+/* Estirar a la ancho para posiciones absolutas */
+.fixed-bottom,
+.fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030
+}
+/* Fijar abajo */
+.fixed-bottom {
+    bottom: 0
+}
+
+@supports ((position:-webkit-sticky) or (position:sticky)) {
+    .sticky-top {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 1020
+    }
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+}
+
+.sr-only-focusable:active,
+.sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal
+}
+/* Sobreado responsivo*/
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important
+}
+
+.shadow-none {
+    box-shadow: none !important
+}
+/* Estirar a lo ancho en 1/4, 1/2, 3/4, entero y automática */
+.w-25 {
+    width: 25% !important
+}
+
+.w-50 {
+    width: 50% !important
+}
+
+.w-75 {
+    width: 75% !important
+}
+
+.w-100 {
+    width: 100% !important
+}
+
+.w-auto {
+    width: auto !important
+}
+/* Estirar a lo alto en 1/4, 1/2, 3/4, entero y automática */
+.h-25 {
+    height: 25% !important
+}
+
+.h-50 {
+    height: 50% !important
+}
+
+.h-75 {
+    height: 75% !important
+}
+
+.h-100 {
+    height: 100% !important
+}
+
+.h-auto {
+    height: auto !important
+}
+/* Aumentar el máximo de ancho al 100% */
+.mw-100 {
+    max-width: 100% !important
+}
+/* Aumentar el máximo de alto al 100% */
+.mh-100 {
+    max-height: 100% !important
+}
+/* Con un mínimo de ancho del viewport */
+.min-vw-100 {
+    min-width: 100vw !important
+}
+/* Con un mínimo de alto del viewport */
+.min-vh-100 {
+    min-height: 100vh !important
+}
+/* Estirar a lo ancho del viewport */
+.vw-100 {
+    width: 100vw !important
+}
+/* Estirar a lo alto del viewport */
+.vh-100 {
+    height: 100vh !important
+}
 /*!
  * Propiedades de Márgenes (margin, margin-top, margin-right, margin-bottom, margin-left), responsivos
  * Propiedades de Rellenos (padding, padding-top, padding-right, padding-bottom, padding-left), responsivos
@@ -4960,17 +5184,34 @@ a:hover:not(.nav-link):not(.btn) {
   content: "";
 }
 /* Estira completamente a lo ancho y sobre pasa los limites de márgenes y relleno del elemento padre */
+.section {
+  position: relative;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 .section-stretched {
   width: 100vw;
   position: relative;
   margin-left: -50vw !important;
   left: 50% !important;
 }
+
 /* Estira al 100% lo alto de acuerdo al viewport */
 .section-height-full {
   height: 100vh;
 }
+.section-height-full>.container {
+  height: 100%;
+}
+.section-items-bottom>.container {
+  -ms-flex-align: end;
+  -ms-grid-row-align: flex-end;
+  align-items: flex-end
+}
 /*Animaciones CSS*/
+.animated {
+  animation-duration: 1.25s;
+}
 @keyframes fadeIn {
   0% {
       opacity: 0
@@ -5700,6 +5941,14 @@ a.text-dark:hover {
   }
 }
 /* Elementos y clases predeterminadas */
+.btn-primary {
+  color: #fff;
+  background-color: #c22525;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #e46060;
+}
 .container {
   max-width: 100%;
 }
@@ -5832,6 +6081,7 @@ hr {
   -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, .7);
   -moz-box-shadow: 0 0 6px rgba(0, 0, 0, .7);
   box-shadow: 0 0 6px rgba(0, 0, 0, .7);
+  z-index: 1;
 }
 #desktop_logo{
   min-width:120px;
@@ -5930,6 +6180,10 @@ hr {
   right: 11px;
 }
 /*Video de fondo*/
+#home-video {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 .background-video-container {
   height: 100%;
   width: 100%;
@@ -5938,6 +6192,40 @@ hr {
   position: absolute;
   overflow: hidden;
   z-index: 0;
+}
+.background-video-content {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 1;
+}
+.background-video-content a{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  text-align: center;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  z-index: 1;
+}
+.background-video-content span{
+  font-size: 2.1rem;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .background-video-content span{
+    font-size: 1.5rem;
+  }
+  #home-video {
+    height:285px;
+  }
+  #home-video video{
+    min-height:250px;
+    width: 600px;
+  }
 }
 .background-video {
   position: absolute;
@@ -5953,8 +6241,68 @@ hr {
   top: 0;
   left: 0;
   position: absolute;
-  background-color: #0a0a0a;
-  opacity: 0.15;
+  background-color: #f2967e;
+  mix-blend-mode: overlay;
+}
+#module-list, #products{
+  max-width: 1200px;
+}
+#module-list .module, #products .product{
+  color: #000;
+}
+.modules.row > [class*="col-"], .products.row > [class*="col-"]{
+  padding: 0.4rem;
+}
+.module-content .btn-primary, .product-content .btn-primary{
+  margin:auto 0 0 0;
+  border-radius: 10px;
+  border: 0;
+  height: 55px;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+.module, .product{
+  color: #fff;
+  min-height: 260px;
+}
+.module .module-content, .product .product-content{
+  height: 100%;
+  padding: 2rem;
+  border-radius: 15px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all .4s ease;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.module .module-content:hover, .product .product-content:hover{
+  color: #000;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, .02);
+  background-color: white;
+  transform: scale(.95);
+}
+.module .module-icon, .product .product-icon{
+  width: 100%;
+  max-width: 120px;
+  margin-bottom: 1.5rem;
+}
+.module .sub-title, .product .sub-title{
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.module .text-content, .product .text-content{
+  font-size: 14px;
+  line-height: 25px;
+  opacity: .8;
 }
 /*!
  * Font Awesome Pro 5.15.1 by @fontawesome - https://fontawesome.com

@@ -44,4 +44,5 @@ $(document).ready(function(){
             this.toggleClass("show");
         });
     });
+    //Ajustar tamañao de video de inicio
 });
