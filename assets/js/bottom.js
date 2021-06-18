@@ -61,7 +61,7 @@ $(document).ready(function(){
 });
 // validationState es un nuevo conjunto que almacena de forma única los inputs
 const validationState = new Set();
-const contactForm = document.getElementById('contact');
+const contactForm = document.getElementById('contact-form');
 // Colección de funciones para la gestión del estados del formulario
 function manageState() {
     return {
@@ -95,8 +95,8 @@ function manageState() {
 function validateForm(inputProps) {
     const inputName = inputProps.name;
     const verifyInputName = {
-        'firstname': validationRules().username,
-        'lastname': validationRules().username,
+        'firstname': validationRules().name,
+        'lastname': validationRules().name,
         'email': validationRules().email,
         'phone': validationRules().phone,
         'phone_mobile': validationRules().phone,
@@ -107,38 +107,38 @@ function validateForm(inputProps) {
 // Reglas de validación para cada campo del formulario
 function validationRules() {
     return {
-        username: (inputProps) => {
-            const usernameValidationRule = /[A-Za-z0-9]{6,}/;
+        name: (inputProps) => {
+            const nameValidationRule = /^(?=.{3,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i;
             const inputValue = inputProps.value;
             const inputName = inputProps.name;
-            const isInputValid = usernameValidationRule.test(inputValue);
+            const isInputValid = nameValidationRule.test(inputValue);
 
             isInputValid ? manageState().removeFromState({inputProps, inputName}) : manageState().addToState({inputProps, inputName});
 
             return true;
         },
         email : (inputProps) => {
-            const usernameValidationRule = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            const nameValidationRule = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             const inputValue = inputProps.value;
             const inputName = inputProps.name;
-            const isInputValid = usernameValidationRule.test(inputValue);
+            const isInputValid = nameValidationRule.test(inputValue);
 
             isInputValid ? manageState().removeFromState({inputProps, inputName}) : manageState().addToState({inputProps, inputName});
 
             return true;
         },
         phone: (inputProps) => {
-            const usernameValidationRule = /^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$/;
+            const nameValidationRule = /^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$/;
             const inputValue = inputProps.value;
             const inputName = inputProps.name;
-            const isInputValid = usernameValidationRule.test(inputValue);
+            const isInputValid = nameValidationRule.test(inputValue);
 
             isInputValid ? manageState().removeFromState({inputProps, inputName}) : manageState().addToState({inputProps, inputName});
 
             return true;
         },
         emptyFields: () => {
-            const formInputElems = [...contactForm.elements].filter(item => item.nodeName === 'INPUT');
+            const formInputElems = [contactForm].filter(item => item.nodeName === 'INPUT');
             for(const inputProps of formInputElems) {
                 const inputName = inputProps.name;
                 const inputValue = inputProps.value;
@@ -153,15 +153,22 @@ function validationRules() {
 // La función manipula los mensajes de validación alternándolos
 function manipulateValidationMsg(validationData) {
     const { inputProps, action } = validationData;
-    const elementValidationMsg = document.querySelector('#'+inputProps.id).parent().find('.error-message');
+    const element = document.querySelector('#'+inputProps.id);
+    const elementClasses = element.classList;
+    const elementValidationMsg = element.parent().find('.error-message');
     const validationMsgClasses = elementValidationMsg.classList;
+
+    /** Es Valido */
     const removeClass = () => {
+        if (elementClasses.contains('is-valid')) elementClasses.remove('is-valid');
+        if (elementClasses.contains('is-invalid') || elementClasses.length === 1) elementClasses.add('is-invalid');
         validationMsgClasses.remove('d-none');
     };
-
+    /** Es Invalido */
     const addClass = () => {
+        if (elementClasses.contains('is-invalid')) elementClasses.remove('is-invalid');
+        if (elementClasses.contains('is-valid') || elementClasses.length === 1) elementClasses.add('is-valid');
         validationMsgClasses.add('d-none');
     };
-    
     return action === 'addClass' ? addClass() : removeClass();
 }
