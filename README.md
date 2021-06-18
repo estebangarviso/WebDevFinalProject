@@ -44,7 +44,7 @@ git clone --branch <BRANCH_NAME> https://github.com/estebangarviso/WebDeveloperP
   - SVG Logo Design
   - Back to top
   - Contact form with Google Maps API and Waze Travel
-  - Javascrip Web Scraping SEO Keywords from dev console in ![Wordtracker.com](https://www.wordtracker.com/)
+  - Javascrip Web Scraping SEO Keywords from dev console in [Wordtracker.com](https://www.wordtracker.com/)
 ```
 (function(){
   var keywords = document.querySelectorAll("#main-results-holder td.keyword span.keyword");
