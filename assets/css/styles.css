@@ -5945,6 +5945,9 @@ a.text-dark:hover {
   height: 350px;
   margin-bottom: 2rem;
 }
+#products-page #content {
+  padding-top:1.5rem;
+}
 /* Elementos y clases predeterminadas */
 .btn-fullwidth {
   width: 100%;
