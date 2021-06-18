@@ -41,7 +41,7 @@ git clone --branch <BRANCH_NAME> https://github.com/estebangarviso/WebDevFinalPr
 ![Git](https://img.shields.io/badge/Git-2.31.0-F05032?style=solid&labelColor=F05032&logoColor=ffffff&logo=Git)
 ![Github](https://img.shields.io/badge/Github--181717?style=solid&labelColor=181717&logoColor=ffffff&logo=GitHub)
 ### Librerias/Libraries
-![FontAwesome](https://img.shields.io/badge/Font-Awesome-v5.15.1-E34F26?style=solid&logoColor=ffffff&labelColor=339AF0&logo=fontawesome)
+![FontAwesome](https://img.shields.io/badge/FontAwesome-v5.15-339AF0?style=solid&logoColor=339AF0&labelColor=ffffff&logo=fontawesome)
 ### Features
   - SVG Logo Design
   - Back to top
