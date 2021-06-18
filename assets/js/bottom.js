@@ -48,7 +48,7 @@ $(document).ready(function(){
         const nodeName = event.target.nodeName;
         const inputProps = event.target;
 
-        if(nodeName === 'INPUT') {
+        if(nodeName === 'INPUT' || nodeName === 'TEXTAREA') {
             validateForm(inputProps);
         }
     });
@@ -100,6 +100,7 @@ function validateForm(inputProps) {
         'email': validationRules().email,
         'phone': validationRules().phone,
         'phone_mobile': validationRules().phone,
+        'message': validationRules().message,
     };
 
     return verifyInputName[inputName](inputProps)
@@ -137,16 +138,23 @@ function validationRules() {
 
             return true;
         },
-        emptyFields: () => {
-            const formInputElems = [contactForm].filter(item => item.nodeName === 'INPUT');
-            for(const inputProps of formInputElems) {
-                const inputName = inputProps.name;
-                const inputValue = inputProps.value;
+        message: (inputProps) => {
+            const nameValidationRule = /^[A-Za-z0-9.]{5,1000}$/;
+            const inputValue = inputProps.value;
+            const inputName = inputProps.name;
+            const isInputValid = nameValidationRule.test(inputValue);
 
-                if(!inputValue) {
-                    manageState().addToState({inputProps, inputName});
-                } 
-            }
+            isInputValid ? manageState().removeFromState({inputProps, inputName}) : manageState().addToState({inputProps, inputName});
+
+            return true;
+        },
+        emptyFields: () => {
+                var isEmpty = true;
+                $('#contact-form input, #contact-form textarea').each(function() {
+                    console.log(this.value);
+                    if(this.value == '') isEmpty = true;
+                });
+                return isEmpty;
         }
     }
 }
