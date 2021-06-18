@@ -369,6 +369,50 @@
                             <li>Retire la cafetera del fuego tan pronto como pueda comprobar que la infusión de café desaparece por completo en la parte superior.</li>
                             <li>La parte superior del cuerpo y el tubo para los que la infusión de café es necesaria para limpiar periódicamente. Recuerde que para limpiar el anillo de goma y filtro nunca utilice jabón ni detergente.</li>
                             </ol></p>
+                            <div class="container py-2">
+                                <h1 class="page-title">Solicitudes y Reclamos</h1>
+                                <form id="contact-form">
+                                    <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Nombre</label>
+                                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Ingrese su nombre">
+                                        <span class="error-message d-none">Nombre inválido</span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="lastname">Apellido</label>
+                                        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Ingrese su apellido">
+                                        <span class="error-message d-none">Apellido inválido</span>
+                                    </div>
+                                    </div>
+                                    <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" class="form-control" placeholder="Ingrese su Email">
+                                        <span class="error-message d-none">Email inválido</span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="phone_mobile">Telefono Móvil</label>
+                                        <input type="text" name="phone_mobile" id="phone_mobile" class="form-control" placeholder="Ingrese su Teléfono Móvil">
+                                        <span class="error-message d-none">Telefono Móvil inválido</span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="phone">Telefono Fijo</label>
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Ingrese su Teléfono Fijo">
+                                        <span class="error-message d-none">Telefono Fijo inválido</span>
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="message">Mensaje</label>
+                                            <textarea name="message" id="message" class="form-control" placeholder="Que desea informarnos?" rows="7"></textarea>
+                                            <span class="error-message d-none">Mensaje inválido</span>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-fullwidth btn-primary js-submit-contact">Enviar</button>
+                                    <div class="contact-form-notification"></div>
+                                </form>
+                            </div>
                         </section>
                     </section>
                 </div>

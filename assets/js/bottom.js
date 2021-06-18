@@ -55,7 +55,12 @@ $(document).ready(function(){
     //Validación de formulario de contacto
     $('.js-submit-contact').click(function(event) {
         event.preventDefault();
-        manageState().validateState();
+        let formIsValid = manageState().validateState();
+        if(formIsValid === true){
+            document.querySelector("#contact-form .contact-form-notification").innerHTML = '<div class="alert alert-success alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Mensaje enviado con exito!</li></ul></div>';
+        }else{
+            document.querySelector("#contact-form .contact-form-notification").innerHTML = '<div class="alert alert-danger alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Debe completar los campos antes de enviar un mensaje</li></ul></div>';
+        }
     });
     
 });
@@ -149,12 +154,15 @@ function validationRules() {
             return true;
         },
         emptyFields: () => {
-                var isEmpty = true;
-                $('#contact-form input, #contact-form textarea').each(function() {
-                    console.log(this.value);
-                    if(this.value == '') isEmpty = true;
+                var isEmpty = false;
+                $('#contact-form input, #contact-form textarea').each(function(inputProps) {
+                    const inputName = inputProps.name;
+                    const inputValue = inputProps.value;
+    
+                    if(!inputValue) {
+                        manageState().addToState({inputProps, inputName});
+                    } 
                 });
-                return isEmpty;
         }
     }
 }

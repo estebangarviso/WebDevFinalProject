@@ -5945,6 +5945,38 @@ a.text-dark:hover {
   height: 350px;
   margin-bottom: 2rem;
 }
+#contact-form .contact-form-notification {
+  width: 100%;
+  transition: transform .1s ease-in-out;
+}
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0
+}
+.alert-success{
+  color: #155724;
+  background-color: #80ff9d;
+  border-color: #c3e6cb
+}
+.alert-danger {
+  color: #ffcbd0;
+  background-color: #ff6b77;
+  border-color: #ff2138
+}
+.alert-dismissible {
+  padding-right: 4rem
+}
+
+.alert-dismissible .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: .75rem 1.25rem;
+  color: inherit
+}
 #products-page #content {
   padding-top:1.5rem;
 }

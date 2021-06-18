@@ -273,7 +273,7 @@
                                             <![endif]-->
                                             <h3 class="sub-title">Comprar Café</h3>
                                             <p class="text-content"></p>
-                                            <a class="btn btn-primary" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
+                                            <a class="btn btn-primary" href="https://ecafeoficial.herokuapp-app/productos.html" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                                         </article>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 module">
@@ -286,7 +286,7 @@
                                             <![endif]-->
                                             <h3 class="sub-title">Comprar Equipamiento</h3>
                                             <p class="text-content"></p>
-                                            <a class="btn btn-primary" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
+                                            <a class="btn btn-primary" href="https://ecafeoficial.herokuapp-app/productos.html" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                                         </article>
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 module">
@@ -299,10 +299,54 @@
                                             <![endif]-->
                                             <h3 class="sub-title">Comprar Merchandising</h3>
                                             <p class="text-content"></p>
-                                            <a class="btn btn-primary" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
+                                            <a class="btn btn-primary" href="https://ecafeoficial.herokuapp-app/productos.html" target="_blank" rel="noopener noreferrer">Comprar ahora</a>
                                         </article>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="container py-2">
+                                <h1 class="page-title">Solicitudes y Reclamos</h1>
+                                <form id="contact-form">
+                                    <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="firstname">Nombre</label>
+                                        <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Ingrese su nombre">
+                                        <span class="error-message d-none">Nombre inválido</span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="lastname">Apellido</label>
+                                        <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Ingrese su apellido">
+                                        <span class="error-message d-none">Apellido inválido</span>
+                                    </div>
+                                    </div>
+                                    <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" class="form-control" placeholder="Ingrese su Email">
+                                        <span class="error-message d-none">Email inválido</span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="phone_mobile">Telefono Móvil</label>
+                                        <input type="text" name="phone_mobile" id="phone_mobile" class="form-control" placeholder="Ingrese su Teléfono Móvil">
+                                        <span class="error-message d-none">Telefono Móvil inválido</span>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="phone">Telefono Fijo</label>
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Ingrese su Teléfono Fijo">
+                                        <span class="error-message d-none">Telefono Fijo inválido</span>
+                                    </div>
+                                    
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12">
+                                            <label for="message">Mensaje</label>
+                                            <textarea name="message" id="message" class="form-control" placeholder="Que desea informarnos?" rows="7"></textarea>
+                                            <span class="error-message d-none">Mensaje inválido</span>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-fullwidth btn-primary js-submit-contact">Enviar</button>
+                                    <div class="contact-form-notification"></div>
+                                </form>
                             </div>
                         </section>
                     </section>
