@@ -5940,10 +5940,22 @@ a.text-dark:hover {
       margin-bottom: 2rem
   }
 }
+#map iframe{
+  width: 100%;
+  height: 350px;
+  margin-bottom: 2rem;
+}
 /* Elementos y clases predeterminadas */
+.btn-fullwidth {
+  width: 100%;
+}
 .btn-primary {
   color: #fff;
   background-color: #c22525;
+  padding:1rem;
+}
+.btn {
+  border-radius: 10px;
 }
 .btn-primary:hover {
   color: #fff;
@@ -6282,7 +6294,7 @@ hr {
 }
 .module .module-content:hover, .product .product-content:hover{
   color: #000;
-  box-shadow: 0 50px 100px rgba(0, 0, 0, .02);
+  box-shadow: 0 26px 23px rgb(0, 0, 0, .64);
   background-color: white;
   transform: scale(.95);
 }

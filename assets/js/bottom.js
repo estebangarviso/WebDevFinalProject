@@ -44,5 +44,9 @@ $(document).ready(function(){
             this.toggleClass("show");
         });
     });
-    //Ajustar tamañao de video de inicio
+    //Validación de formulario de contacto
+    $('.js-submit-contact').on('click', function(event) {
+        event.preventDefault();
+        manageState().validateState();
+    });
 });
