@@ -109,7 +109,7 @@ function manageState() {
             }
 
             if(validationState.size === 0) {
-                validationRules().emptyFields();
+                if(typeof validationRules().emptyFields() === 'undefined') return false;
                 return true;
             }
         }
@@ -174,7 +174,6 @@ function validationRules() {
             return true;
         },
         emptyFields: () => {
-                var isEmpty = false;
                 $('#contact-form input, #contact-form textarea').each(function(inputProps) {
                     const inputName = inputProps.name;
                     const inputValue = inputProps.value;
