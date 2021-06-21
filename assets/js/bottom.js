@@ -65,13 +65,14 @@ $(document).ready(function(){
     });
     $('.js-submit-contact').on("click", function(event) {
         event.preventDefault();
-        let formIsValid = manageState().validateState();
+        let formIsValid = manageState().validateState(),
+        form = this.parent();
         if(formIsValid === true){
-            this.parent().find('.contact-form-notification').innerHTML = '<div class="alert alert-success alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Mensaje enviado con exito!</li></ul></div>';
+            form.find('.contact-form-notification').innerHTML = '<div class="alert alert-success alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Mensaje enviado con exito!</li></ul></div>';
         }else{
-            this.parent().find('.contact-form-notification').innerHTML = '<div class="alert alert-danger alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Debe completar los campos antes de enviar un mensaje</li></ul></div>';
+            form.find('.contact-form-notification').innerHTML = '<div class="alert alert-danger alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Debe completar los campos antes de enviar un mensaje</li></ul></div>';
         }
-        this.parent().find('.contact-form-notification .alert .close').on('click', function(e){
+        form.find('.contact-form-notification .alert .close').on('click', function(e){
             e.preventDefault();
             this.parent().remove();
         });
