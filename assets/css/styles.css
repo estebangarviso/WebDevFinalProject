@@ -6272,6 +6272,7 @@ hr {
   .background-video-content span{
     font-size: 1.5rem;
   }
+  /*Limitar altura de video para mejorar su apariencia visual en móviles*/
   #home-video .section{
     max-height: 300px !important;
   }
