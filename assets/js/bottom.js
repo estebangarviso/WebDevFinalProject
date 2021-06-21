@@ -1,7 +1,9 @@
 $(document).ready(function(){
-    // Seleccionando elementos del DOM
+    // Variables a utilizar una vez cargado el sitio
     var backtotop = $("#back-to-top"),
-    desktopHeaderHeight = document.getElementById('desktop-header-container').offsetHeight;
+    desktopHeaderHeight = document.getElementById('desktop-header-container').offsetHeight,
+    screenHeight = window.screen.height * window.devicePixelRatio,
+    screenWidth = window.screen.width * window.devicePixelRatio;
     window.onload = function () {
         //Esperar que todo el DOM este cargado para eliminar el elemento del precargador
         $('#page-preloader').fadeOut(1000, function(){
@@ -28,7 +30,7 @@ $(document).ready(function(){
     }
 
     //Evento de click para volver arriba con comportamiento suave
-    $('#back-to-top').click(function(){
+    $('#back-to-top').on("click", function() {
         window.scrollTo({top: 0, behavior: 'smooth'});
         return false;
     });
@@ -39,7 +41,10 @@ $(document).ready(function(){
             this.parent().toggleClass("_toggled");
         });
     });
-    //Evento de despliegue alternado del menu con efecto de empuje para dispositivos móviles
+    /*
+    *   Evento de despliegue alternado del menu.
+    *   Efecto de empuje (de izquierda a derecha) para dispositivos móviles
+    */
     $('#mobile-header').each(function(e){
         e.find(".col-mobile-menu-push").on("click", function() {
             this.toggleClass("show");
@@ -47,10 +52,10 @@ $(document).ready(function(){
     });
     /*
     *   Validación de formulario de contacto
-            1.- Agregar evento keyup en campos
-            2.- Validar al momento de hacer click
+    *        1.- Agregar evento keyup en campos
+    *        2.- Validar al momento de hacer click
     */
-    contactForm.addEventListener('keyup', function(event) {
+    $('#contact-form').on("keyup", function(event) {
         const nodeName = event.target.nodeName;
         const inputProps = event.target;
 
@@ -58,19 +63,22 @@ $(document).ready(function(){
             validateForm(inputProps);
         }
     });
-    $('.js-submit-contact').click(function(event) {
+    $('.js-submit-contact').on("click", function(event) {
         event.preventDefault();
         let formIsValid = manageState().validateState();
         if(formIsValid === true){
-            document.querySelector("#contact-form .contact-form-notification").innerHTML = '<div class="alert alert-success alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Mensaje enviado con exito!</li></ul></div>';
+            this.parent().find('.contact-form-notification').innerHTML = '<div class="alert alert-success alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Mensaje enviado con exito!</li></ul></div>';
         }else{
-            document.querySelector("#contact-form .contact-form-notification").innerHTML = '<div class="alert alert-danger alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Debe completar los campos antes de enviar un mensaje</li></ul></div>';
+            this.parent().find('.contact-form-notification').innerHTML = '<div class="alert alert-danger alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Debe completar los campos antes de enviar un mensaje</li></ul></div>';
         }
+        this.parent().find('.contact-form-notification .alert .close').on('click', function(e){
+            e.preventDefault();
+            this.parent().remove();
+        });
     });
 });
 // validationState es un nuevo conjunto que almacena de forma única los inputs
 const validationState = new Set();
-const contactForm = document.getElementById('contact-form');
 // Colección de funciones para la gestión del estados del formulario
 function manageState() {
     return {
@@ -137,6 +145,7 @@ function validationRules() {
 
             return true;
         },
+        /* Validación de teléfono en formato chileno */
         phone: (inputProps) => {
             const nameValidationRule = /^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$/;
             const inputValue = inputProps.value;
