@@ -16,6 +16,7 @@ $(document).ready(function(){
             }else{
                 backtotop.removeClass("-back-to-top-visible")
             }
+            //Fijar header al bajar bajar el scroll
             if(scrollTop > desktopHeaderHeight){
                 document.querySelector('#header .sticky-desktop-wrapper').style.height = desktopHeaderHeight + 'px';
                 $('#desktop-header').addClass('stuck-header');
