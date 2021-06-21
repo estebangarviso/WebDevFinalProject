@@ -5505,6 +5505,9 @@ a.text-dark:hover {
   top: inherit;
   bottom: 0;
 }
+#mobile-header.stuck-header {
+  background: #f0f0f0;
+}
 #desktop-header.stuck-header {
   background: #f0f0f0;
   transform: translateY(0);
@@ -5531,6 +5534,9 @@ a.text-dark:hover {
     }
     #mobile-header {
         display: block
+    }
+    #back-to-top{
+      bottom: 4rem !important;
     }
 }
 @keyframes slideDown {
@@ -6265,6 +6271,9 @@ hr {
 @media (max-width: 768px) {
   .background-video-content span{
     font-size: 1.5rem;
+  }
+  #home-video .section{
+    max-height: 300px !important;
   }
 }
 .background-video {
