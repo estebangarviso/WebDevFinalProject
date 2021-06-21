@@ -100,7 +100,7 @@ function manageState() {
         }
     }
 };
-// Función recibe un input con sus propiedades
+// Función que recibe un input con sus propiedades
 function validateForm(inputProps) {
     const inputName = inputProps.name;
     const verifyInputName = {
