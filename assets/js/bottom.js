@@ -29,6 +29,10 @@ $(document).ready(function(){
         });
     }
 
+    //Ajustar video de inicio
+    document.querySelector('#home-video video').style.height = screenHeight + 'px';
+    document.querySelector('#home-video video').style.width = screenWidth + 'px';
+
     //Evento de click para volver arriba con comportamiento suave
     $('#back-to-top').on("click", function() {
         window.scrollTo({top: 0, behavior: 'smooth'});
