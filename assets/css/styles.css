@@ -5444,10 +5444,6 @@ a.text-dark:hover {
   box-shadow: 0 0 4px 0 #590808;
   z-index: 100
 }
-#index #header {
-  background: transparent;
-  z-index: -1;
-}
 .header-top a:not(.btn):not(.nav-link) {
   color: #000;
 }
