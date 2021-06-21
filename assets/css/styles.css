@@ -5995,8 +5995,16 @@ a.text-dark:hover {
   background-color: #c22525;
   padding:1rem;
 }
+.btn-secondary{
+  color: #f0f0f0;
+  background-color: #4d0111;
+  padding: .5rem;
+}
 .btn {
   border-radius: 10px;
+}
+.btn:hover {
+  color: #fff;
 }
 .btn-primary:hover {
   color: #fff;
@@ -6005,7 +6013,6 @@ a.text-dark:hover {
 .container {
   max-width: 100%;
 }
-
 html {
   scroll-behavior: smooth
 }
