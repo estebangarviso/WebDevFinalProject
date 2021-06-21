@@ -45,6 +45,11 @@ $(document).ready(function(){
             this.toggleClass("show");
         });
     });
+    /*
+    *   Validación de formulario de contacto
+            1.- Agregar evento keyup en campos
+            2.- Validar al momento de hacer click
+    */
     contactForm.addEventListener('keyup', function(event) {
         const nodeName = event.target.nodeName;
         const inputProps = event.target;
@@ -53,7 +58,6 @@ $(document).ready(function(){
             validateForm(inputProps);
         }
     });
-    //Validación de formulario de contacto
     $('.js-submit-contact').click(function(event) {
         event.preventDefault();
         let formIsValid = manageState().validateState();
@@ -63,7 +67,6 @@ $(document).ready(function(){
             document.querySelector("#contact-form .contact-form-notification").innerHTML = '<div class="alert alert-danger alert-dismissible"  role="alert"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><ul><li>Debe completar los campos antes de enviar un mensaje</li></ul></div>';
         }
     });
-    
 });
 // validationState es un nuevo conjunto que almacena de forma única los inputs
 const validationState = new Set();
