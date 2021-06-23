@@ -1,13 +1,13 @@
 $(document).ready(function(){
     // Variables a utilizar una vez cargado el sitio
-    var backtotop = $("#back-to-top"),
+    var preloader = $('#page-preloader'), backtotop = $("#back-to-top"),
     desktopHeaderHeight = document.getElementById('desktop-header-container').offsetHeight,
     screenHeight = window.screen.height * window.devicePixelRatio,
     screenWidth = window.screen.width * window.devicePixelRatio;
     window.onload = function () {
         //Esperar que todo el DOM este cargado para eliminar el elemento del precargador
-        $('#page-preloader').fadeOut(1000, function(){
-            $('#page-preloader').remove();
+        preloader.fadeOut(1000, function(){
+            preloader.remove();
         });
         //Verificar si la ventana está arriba, si no, entonces mostrar botón
         $(window).scroll(function(){
@@ -82,6 +82,14 @@ $(document).ready(function(){
             e.preventDefault();
             this.parent().remove();
         });
+    });
+    //Agregar al carro de compras
+    $('.product .add-to-cart').on('click', function(e){
+        e.preventDefault();
+        let pid = this.attr("data-product-id");
+        if(typeof pid !== 'undefined' && pid > 0){
+            console.log(products[pid]);
+        }
     });
 });
 // validationState es un nuevo conjunto que almacena de forma única los inputs

@@ -131,6 +131,14 @@ var $ = (function () {
     }; 
 
     /**
+     * Obtiene el valor de un atributo de un elemento seleccionado
+     * @param {String} attribute nombre del atributo
+     * @returns valor del atributo del elemento
+     */
+    Object.prototype.attr = function(attribute){
+        return this.getAttribute(attribute);
+    }
+    /**
      * Oculta todos los elementos se una selección
      */
     Constructor.prototype.hide = function(){
@@ -329,7 +337,7 @@ class Cart {
     }
     sendCart(){
         /*Se puede mejorar la experiencia con un modal*/
-        if(main.quote.isFilled() !== true) return alert('No se puede enviar una cotización si no ha seleccionado los productos');
+        if(main.cart.isFilled() !== true) return alert('No se puede enviar una cotización si no ha seleccionado los productos');
         return alert('Cotización enviada con éxito');
     }
     addQuantity(id, qty){
@@ -337,19 +345,22 @@ class Cart {
             return Number(n) === n && n % 1 === 0;
         }
 
-        if(!isInt(id)) return alert('El producto no ha sido seleccionado.');
-        Object.entries(main.quote.products).forEach(product => {
-            let idx = product[0];
-            product = product[1];
-            if(main.quote.products[idx].id === id && qty > 0){
-                main.quote.products[idx].quantity += qty;
-                main.quote.total += qty * (product.price + product.dcost);
-                main.quote.np += qty;
-                localStorage.setItem('main_quote_products', main.quote.products);
-                localStorage.setItem('main_quote_total', main.quote.total);
-                localStorage.setItem('main_quote_np', main.quote.np);
-                alert('Agregaste ' + qty + ' del product N° ' + id + ' a tu carro de compras. Tienes ' + main.quote.np + ' productos en el carrito. Total a pagar: $ ' + main.quote.total);
-            } 
+        if(!isInt(id)) return console.error('No se logra localizar el id del producto.');
+        Object.entries(main.cart.products).forEach(product => {
+            let idx = product[0],
+            pd = product[1],
+            img = pd.img[0], name = pd.name, attribute = pd.attr,
+            price = pd.price, 
+            content = '<div class="row align-items-center"><div class="col-md-5 divide-right mb-1"><div class="row no-gutters align-items-center"><div class="col-6 text-center product-image"><img src="{img}" class="img-fluid"> </div><div class="col col-info"> <div class="pb-1"> <span class="h3 product-name">{name}</span> </div><div class="product-attributes text-muted pb-1"> <div class="product-line-info">{attribute}</div></div><span class="text-muted qty">{qty}x</span> <span class="unit-price">{price}</span> </div></div></div><div class="col-md-7"> <div class="cart-content pt-3"> <p class="cart-products-count">Hay{np}artículos en su carro.</p><p> <strong>Total a pagar:</strong>&nbsp;{total}</p></div></div></div>';
+            if(pd.id === id && qty > 0){
+                pd.quantity += qty;
+                main.cart.total += qty * (product.price + product.dcost);
+                main.cart.np += qty;
+                localStorage.setItem('main_quote_products', main.cart.products);
+                localStorage.setItem('main_quote_total', main.cart.total);
+                localStorage.setItem('main_quote_np', main.cart.np);
+                alert('Agregaste ' + qty + ' de producto ' + name + ' a tu carro de compras. Tienes ' + main.cart.np + ' productos en el carrito. Total a pagar: $ ' + main.cart.total);
+            }
         });
     }
 };
@@ -374,8 +385,8 @@ const products = [
         /*Long Description*/
         '<p><strong> Cafetera Moka Espresso Italiana de Aluminio para Cocina con Hornillos – Rendimiento 1/3/6/9/12 tazas </strong></p><p><strong> [ </strong> <strong> Características </strong> <strong> ] </strong></p><p>La Cafetera Moka Espresso es una herramienta para extraer café espresso en Europa y países de América Latina, en los Estados Unidos conocido como la "Cafetera Italiana por Goteo". La Cafetera Moka tiene una estructura de dos pisos, arreglada en una porción inferior para hervir el agua, está equipado con un café en polvo del filtro de malla en la mitad superior. Aunque no se utiliza en una presión de inyección de agua caliente, puede utilizar café en polvo finamente molido, pero estrictamente hablando no es extracción de espresso, sino más cerca del reloj de arena, pero esta cafetera moka todavía tiene esta concentración italiana y sabor a café espresso tan peculiar.</p><p><strong> [ </strong> <strong> Especificaciones </strong> <strong> ] </strong></p><p>Tamaño: 1Cup (50 ml)(130*60mm) 3 taza (150 ml)(150*77mm) 6 taza (300 ml)(185*90mm) 9 taza (450 ml)(215*120mm) 12 taza (600 ml)(240*120mm) (Color: color original). Material: Aluminio</p><p><strong> [ </strong> <strong> Como usar </strong> <strong> ] </strong></p><ol><li>Llenar de agua en la parte inferior, evitando que el agua supere la válvula de seguridad.</li><li>Coloque el café molido dentro del embudo con un poco de presión. No use Malta o café con otras sustancias, que pueden condensarse y filtrar aberturas.</li><li>Limpie el anillo de rosca, anillo de goma y embudo. Cualquier partícula de café sobrante puede afectar el sellado del vapor y producir filtraciones.</li><li>Mantenga el café en posición vertical al atornillar las dos piezas. Esto evitará que se humedezca el café.</li><li>Retire la cafetera del fuego tan pronto como pueda comprobar que la infusión de café desaparece por completo en la parte superior.</li><li>La parte superior del cuerpo y el tubo para los que la infusión de café es necesaria para limpiar periódicamente. Recuerde que para limpiar el anillo de goma y filtro nunca utilice jabón ni detergente.</li></ol>',
         /*Images*/
-        ['/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg']
-        /*Video*/
+        ['/media/img/p/1/1cup.jpg','/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg'],
+        /*Videos*/
         ['/media/vid/p/1/vid1.mp4']
     ),
     new Product(
@@ -394,8 +405,8 @@ const products = [
         /*Long Description*/
         '<p><strong> Cafetera Moka Espresso Italiana de Aluminio para Cocina con Hornillos – Rendimiento 1/3/6/9/12 tazas </strong></p><p><strong> [ </strong> <strong> Características </strong> <strong> ] </strong></p><p>La Cafetera Moka Espresso es una herramienta para extraer café espresso en Europa y países de América Latina, en los Estados Unidos conocido como la "Cafetera Italiana por Goteo". La Cafetera Moka tiene una estructura de dos pisos, arreglada en una porción inferior para hervir el agua, está equipado con un café en polvo del filtro de malla en la mitad superior. Aunque no se utiliza en una presión de inyección de agua caliente, puede utilizar café en polvo finamente molido, pero estrictamente hablando no es extracción de espresso, sino más cerca del reloj de arena, pero esta cafetera moka todavía tiene esta concentración italiana y sabor a café espresso tan peculiar.</p><p><strong> [ </strong> <strong> Especificaciones </strong> <strong> ] </strong></p><p>Tamaño: 1Cup (50 ml)(130*60mm) 3 taza (150 ml)(150*77mm) 6 taza (300 ml)(185*90mm) 9 taza (450 ml)(215*120mm) 12 taza (600 ml)(240*120mm) (Color: color original). Material: Aluminio</p><p><strong> [ </strong> <strong> Como usar </strong> <strong> ] </strong></p><ol><li>Llenar de agua en la parte inferior, evitando que el agua supere la válvula de seguridad.</li><li>Coloque el café molido dentro del embudo con un poco de presión. No use Malta o café con otras sustancias, que pueden condensarse y filtrar aberturas.</li><li>Limpie el anillo de rosca, anillo de goma y embudo. Cualquier partícula de café sobrante puede afectar el sellado del vapor y producir filtraciones.</li><li>Mantenga el café en posición vertical al atornillar las dos piezas. Esto evitará que se humedezca el café.</li><li>Retire la cafetera del fuego tan pronto como pueda comprobar que la infusión de café desaparece por completo en la parte superior.</li><li>La parte superior del cuerpo y el tubo para los que la infusión de café es necesaria para limpiar periódicamente. Recuerde que para limpiar el anillo de goma y filtro nunca utilice jabón ni detergente.</li></ol>',
         /*Images*/
-        ['/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg']
-        /*Video*/
+        ['/media/img/p/1/3cup.jpg','/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg'],
+        /*Videos*/
         ['/media/vid/p/1/vid1.mp4']
     ),
     new Product(
@@ -414,8 +425,8 @@ const products = [
         /*Long Description*/
         '<p><strong> Cafetera Moka Espresso Italiana de Aluminio para Cocina con Hornillos – Rendimiento 1/3/6/9/12 tazas </strong></p><p><strong> [ </strong> <strong> Características </strong> <strong> ] </strong></p><p>La Cafetera Moka Espresso es una herramienta para extraer café espresso en Europa y países de América Latina, en los Estados Unidos conocido como la "Cafetera Italiana por Goteo". La Cafetera Moka tiene una estructura de dos pisos, arreglada en una porción inferior para hervir el agua, está equipado con un café en polvo del filtro de malla en la mitad superior. Aunque no se utiliza en una presión de inyección de agua caliente, puede utilizar café en polvo finamente molido, pero estrictamente hablando no es extracción de espresso, sino más cerca del reloj de arena, pero esta cafetera moka todavía tiene esta concentración italiana y sabor a café espresso tan peculiar.</p><p><strong> [ </strong> <strong> Especificaciones </strong> <strong> ] </strong></p><p>Tamaño: 1Cup (50 ml)(130*60mm) 3 taza (150 ml)(150*77mm) 6 taza (300 ml)(185*90mm) 9 taza (450 ml)(215*120mm) 12 taza (600 ml)(240*120mm) (Color: color original). Material: Aluminio</p><p><strong> [ </strong> <strong> Como usar </strong> <strong> ] </strong></p><ol><li>Llenar de agua en la parte inferior, evitando que el agua supere la válvula de seguridad.</li><li>Coloque el café molido dentro del embudo con un poco de presión. No use Malta o café con otras sustancias, que pueden condensarse y filtrar aberturas.</li><li>Limpie el anillo de rosca, anillo de goma y embudo. Cualquier partícula de café sobrante puede afectar el sellado del vapor y producir filtraciones.</li><li>Mantenga el café en posición vertical al atornillar las dos piezas. Esto evitará que se humedezca el café.</li><li>Retire la cafetera del fuego tan pronto como pueda comprobar que la infusión de café desaparece por completo en la parte superior.</li><li>La parte superior del cuerpo y el tubo para los que la infusión de café es necesaria para limpiar periódicamente. Recuerde que para limpiar el anillo de goma y filtro nunca utilice jabón ni detergente.</li></ol>',
         /*Images*/
-        ['/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg']
-        /*Video*/
+        ['/media/img/p/1/6cup.jpg','/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg'],
+        /*Videos*/
         ['/media/vid/p/1/vid1.mp4']
     ),
     new Product(
@@ -434,8 +445,8 @@ const products = [
         /*Long Description*/
         '<p><strong> Cafetera Moka Espresso Italiana de Aluminio para Cocina con Hornillos – Rendimiento 1/3/6/9/12 tazas </strong></p><p><strong> [ </strong> <strong> Características </strong> <strong> ] </strong></p><p>La Cafetera Moka Espresso es una herramienta para extraer café espresso en Europa y países de América Latina, en los Estados Unidos conocido como la "Cafetera Italiana por Goteo". La Cafetera Moka tiene una estructura de dos pisos, arreglada en una porción inferior para hervir el agua, está equipado con un café en polvo del filtro de malla en la mitad superior. Aunque no se utiliza en una presión de inyección de agua caliente, puede utilizar café en polvo finamente molido, pero estrictamente hablando no es extracción de espresso, sino más cerca del reloj de arena, pero esta cafetera moka todavía tiene esta concentración italiana y sabor a café espresso tan peculiar.</p><p><strong> [ </strong> <strong> Especificaciones </strong> <strong> ] </strong></p><p>Tamaño: 1Cup (50 ml)(130*60mm) 3 taza (150 ml)(150*77mm) 6 taza (300 ml)(185*90mm) 9 taza (450 ml)(215*120mm) 12 taza (600 ml)(240*120mm) (Color: color original). Material: Aluminio</p><p><strong> [ </strong> <strong> Como usar </strong> <strong> ] </strong></p><ol><li>Llenar de agua en la parte inferior, evitando que el agua supere la válvula de seguridad.</li><li>Coloque el café molido dentro del embudo con un poco de presión. No use Malta o café con otras sustancias, que pueden condensarse y filtrar aberturas.</li><li>Limpie el anillo de rosca, anillo de goma y embudo. Cualquier partícula de café sobrante puede afectar el sellado del vapor y producir filtraciones.</li><li>Mantenga el café en posición vertical al atornillar las dos piezas. Esto evitará que se humedezca el café.</li><li>Retire la cafetera del fuego tan pronto como pueda comprobar que la infusión de café desaparece por completo en la parte superior.</li><li>La parte superior del cuerpo y el tubo para los que la infusión de café es necesaria para limpiar periódicamente. Recuerde que para limpiar el anillo de goma y filtro nunca utilice jabón ni detergente.</li></ol>',
         /*Images*/
-        ['/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg']
-        /*Video*/
+        ['/media/img/p/1/9cup.jpg','/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg'],
+        /*Videos*/
         ['/media/vid/p/1/vid1.mp4']
     ),
     new Product(
@@ -454,14 +465,14 @@ const products = [
         /*Long Description*/
         '<p><strong> Cafetera Moka Espresso Italiana de Aluminio para Cocina con Hornillos – Rendimiento 1/3/6/9/12 tazas </strong></p><p><strong> [ </strong> <strong> Características </strong> <strong> ] </strong></p><p>La Cafetera Moka Espresso es una herramienta para extraer café espresso en Europa y países de América Latina, en los Estados Unidos conocido como la "Cafetera Italiana por Goteo". La Cafetera Moka tiene una estructura de dos pisos, arreglada en una porción inferior para hervir el agua, está equipado con un café en polvo del filtro de malla en la mitad superior. Aunque no se utiliza en una presión de inyección de agua caliente, puede utilizar café en polvo finamente molido, pero estrictamente hablando no es extracción de espresso, sino más cerca del reloj de arena, pero esta cafetera moka todavía tiene esta concentración italiana y sabor a café espresso tan peculiar.</p><p><strong> [ </strong> <strong> Especificaciones </strong> <strong> ] </strong></p><p>Tamaño: 1Cup (50 ml)(130*60mm) 3 taza (150 ml)(150*77mm) 6 taza (300 ml)(185*90mm) 9 taza (450 ml)(215*120mm) 12 taza (600 ml)(240*120mm) (Color: color original). Material: Aluminio</p><p><strong> [ </strong> <strong> Como usar </strong> <strong> ] </strong></p><ol><li>Llenar de agua en la parte inferior, evitando que el agua supere la válvula de seguridad.</li><li>Coloque el café molido dentro del embudo con un poco de presión. No use Malta o café con otras sustancias, que pueden condensarse y filtrar aberturas.</li><li>Limpie el anillo de rosca, anillo de goma y embudo. Cualquier partícula de café sobrante puede afectar el sellado del vapor y producir filtraciones.</li><li>Mantenga el café en posición vertical al atornillar las dos piezas. Esto evitará que se humedezca el café.</li><li>Retire la cafetera del fuego tan pronto como pueda comprobar que la infusión de café desaparece por completo en la parte superior.</li><li>La parte superior del cuerpo y el tubo para los que la infusión de café es necesaria para limpiar periódicamente. Recuerde que para limpiar el anillo de goma y filtro nunca utilice jabón ni detergente.</li></ol>',
         /*Images*/
-        ['/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg']
-        /*Video*/
+        ['/media/img/p/1/12cup.jpg','/media/img/p/1/pic1.jpg','/media/img/p/1/pic2.jpg','/media/img/p/1/pic3.jpg'],
+        /*Videos*/
         ['/media/vid/p/1/vid1.mp4']
     ),
 ];
 
 var main = {
     'products': products,
-    // 'quote': new Cart(products),
-    'quote': new Cart(),
+    // 'cart': new Cart(products),
+    'cart': new Cart(),
 };
